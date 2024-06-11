@@ -1,0 +1,103 @@
+.m-singleInteractable {
+  box-sizing: content-box;
+  &--button {
+    border-radius: 34px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    & .a-simpleInteractable__label {
+      user-select: none;
+    }
+  }
+
+  &--chip {
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    & .a-simpleInteractable__label {
+      user-select: none;
+    }
+  }
+
+  &--filled {
+    @each $name, $value in $color-palettes {
+      $onColor: getColorToken($name, 'onElement');
+      $surfaceColor: getColorToken($name, 'element');
+      &.m-singleInteractable--#{$name} {
+        border: 1px solid $surfaceColor;
+        background-color: $surfaceColor;
+        color: $onColor;
+
+        .a-simpleInteractable__separatorLine {
+          background-color: $onColor;
+        }
+      }
+    }
+  }
+
+  &--tonal {
+    @each $name, $value in $color-palettes {
+      &.m-singleInteractable--#{$name} {
+        border: 1px solid getColorToken($name, 'container');
+        background-color: getColorToken($name, 'container');
+        color: getColorToken($name, 'onContainer');
+
+        .a-simpleInteractable__separatorLine {
+          background-color: getColorToken($name, 'onContainer');
+        }
+      }
+    }
+  }
+
+  &--outline {
+    @each $name, $value in $color-palettes {
+      &.m-singleInteractable--#{$name} {
+        border: 1px solid getColorToken($name, 'onContainer');
+        background-color: transparent;
+        color: getColorToken($name, 'element');
+
+        .a-simpleInteractable__separatorLine {
+          background-color: getColorToken($name, 'element');
+        }
+      }
+    }
+  }
+
+  &--elevated {
+    @each $name, $value in $color-palettes {
+      &.m-singleInteractable--#{$name} {
+        border: 1px solid transparent;
+        background-color: getColorToken($name, 'container');
+        color: getColorToken($name, 'onContainer');
+        box-shadow: 0 2px 1px getColorToken($name, 'onContainer');
+
+        .a-simpleInteractable__separatorLine {
+          background-color: getColorToken($name, 'onContainer');
+        }
+      }
+    }
+  }
+
+  &--text {
+    @each $name, $value in $color-palettes {
+      &.m-singleInteractable--#{$name} {
+        border: 1px solid transparent;
+        background-color: transparent;
+        color: getColorToken($name, 'onContainer');
+
+        & .a-simpleInteractable__separatorLine {
+          background-color: getColorToken($name, 'onContainer');
+        }
+      }
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+- Atoms contain generic base implementations used for more complex elements. 
+They are built around reusability on multiple components, and lack any theming, just a common set of props
+that may or may not be used by the different components that integrates them.
+
+Example 1: SimpleInteractable
+Is componsed of a leading icon, a label and a trailing icon.
+It can be used by Button components, input components, chips or even simple list items.
+It does contain styles, but barely enought to give it components structure structure 
+(not bound to any kind of global style or component theming)

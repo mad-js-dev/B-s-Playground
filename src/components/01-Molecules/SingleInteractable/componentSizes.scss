@@ -1,0 +1,101 @@
+.m-singleInteractable {
+  .a-simpleInteractable__icon {
+    flex-basis: auto;
+  }
+
+  &--xs {
+    height: 25px;
+    padding: 0;
+    @include getTypographyStyles('label', 'xs');
+
+    .a-simpleInteractable__icon {
+      width: 14px;
+    }
+
+    .vue3-icon {
+      margin-top: 5px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .a-simpleInteractable__separatorLine {
+      width: 1px;
+    }
+  }
+
+  &--sm {
+    height: 30px;
+    padding: 0 4px;
+    @include getTypographyStyles('label', 'sm');
+
+    .a-simpleInteractable__icon {
+      width: 18px;
+    }
+
+    .vue3-icon {
+      margin-top: 6px;
+      width: 18px;
+      height: 18px;
+    }
+
+    .a-simpleInteractable__separatorLine {
+      width: 2px;
+    }
+  }
+
+  &--md {
+    height: 42px;
+    padding: 0 8px;
+    @include getTypographyStyles('label', 'md');
+
+    .a-simpleInteractable__icon {
+      width: 24px;
+    }
+
+    .vue3-icon {
+      width: 24px;
+      height: 24px;
+    }
+    .a-simpleInteractable__separatorLine {
+      width: 1px;
+    }
+  }
+
+  &--lg {
+    height: 58px;
+    padding: 0 12px;
+    @include getTypographyStyles('label', 'lg');
+
+    .a-simpleInteractable__icon {
+      width: 36px;
+    }
+
+    .vue3-icon {
+      margin-top: 2px;
+      width: 36px;
+      height: 36px;
+    }
+    .a-simpleInteractable__separatorLine {
+      width: 3px;
+    }
+  }
+
+  &--xl {
+    height: 64px;
+    padding: 0 16px;
+    @include getTypographyStyles('label', 'xl');
+
+    .a-simpleInteractable__icon {
+      width: 40px;
+    }
+
+    .vue3-icon {
+      margin-top: 2px;
+      width: 40px;
+      height: 40px;
+    }
+    .a-simpleInteractable__separatorLine {
+      width: 3px;
+    }
+  }
+}

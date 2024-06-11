@@ -1,0 +1,15 @@
+@use 'sass:map';
+@import './default-theme.scss';
+
+@function getTypographyToken($paletteName, $size) {
+  $palette: map.get($typography-tokens, $paletteName);
+  @return map.get($palette, $size);
+}
+
+@mixin getTypographyStyles($paletteName, $size) {
+  $styles: getTypographyToken($paletteName, $size);
+
+  @each $prop, $value in $styles {
+    #{$prop}: #{$value};
+  }
+}

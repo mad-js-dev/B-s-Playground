@@ -1,0 +1,59 @@
+@use 'sass:map';
+@import './default-theme.scss';
+
+$theme: 'default';
+
+$brand-settings: map.get($color-settings, 'brand-colors');
+$utility-settings: map.get($color-settings, 'utility-colors');
+$color-palettes: ();
+$color-tokens: ();
+
+// Provides a color from a colorToken set. To be used in components.
+@function getColorToken($paletteName, $tokenName) {
+  $palette: map.get($color-tokens, $paletteName);
+  $tokenValue: map.get($palette, $tokenName);
+  @return $tokenValue;
+}
+
+// Provides a color directly from a palette. Use with caution.
+@function getColor($paletteName, $value) {
+  $palette: map.get($color-palettes, $paletteName);
+  $color: map.get($palette, $value);
+  @return $color;
+}
+
+// Generating palettes for brand colors.
+@each $name, $value in $brand-settings {
+  $palette: ();
+
+  @each $break in $palette-breaks {
+    $palette: map.set($palette, $break, hsl(hue($value), saturation($value), $break * 1%));
+  }
+
+  $color-palettes: map.set($color-palettes, $name, $palette);
+}
+
+// Generating palettes for utility colors.
+@each $name, $value in $utility-settings {
+  $palette: ();
+
+  @each $break in $palette-breaks {
+    $palette: map.set($palette, $break, hsl(hue($value), saturation($value), $break * 1%));
+  }
+
+  $color-palettes: map.set($color-palettes, $name, $palette);
+}
+
+// Generating token based on the theme picked.
+@if $theme == 'default' {
+  @each $name, $tokens in $default-theme-tokens {
+    $role: ();
+
+    @each $tokenName, $value in $tokens {
+      $color: getColor($name, $value);
+      $role: map.set($role, $tokenName, $color);
+    }
+
+    $color-tokens: map.set($color-tokens, $name, $role);
+  }
+}

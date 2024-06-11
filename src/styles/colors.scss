@@ -1,0 +1,104 @@
+@use 'sass:map';
+@use 'sass:color';
+
+$color-settings: (
+  'brand-colors': (
+    'primary-color': hsl(106, 33%, 38%),
+    'secondary-color': hsl(102, 12%, 44%),
+    'tertiary-color': hsl(180, 33%, 38%),
+    'neutral-color': hsl(87, 4%, 45%),
+    'neutral-variant-color': hsl(88, 6%, 45%)
+  ),
+  'utility-colors': (
+    'error-color': hsl(0, 100%, 50%),
+    'warning-color': hsl(60, 100%, 50%),
+    'success-color': hsl(120, 100%, 50%),
+    'info-color': hsl(250, 100%, 50%)
+  )
+);
+
+$brand-settings: map.get($color-settings, 'brand-colors');
+$utility-settings: map.get($color-settings, 'utility-colors');
+$color-palettes: ();
+
+@each $name, $value in $brand-settings {
+  $palette: ();
+  //This should use an array of percentages not an int
+  @for $i from 0 through 10 {
+    $palette: map.set($palette, $i * 10, hsl(hue($value), saturation($value), $i * 10%));
+  }
+  $color-palettes: map.set($color-palettes, $name, $palette);
+}
+
+@each $name, $value in $utility-settings {
+  $palette: ();
+  //This should use an array of percentages not an int
+  @for $i from 0 through 10 {
+    $palette: map.set($palette, $i * 10, hsl(hue($value), saturation($value), $i * 10%));
+  }
+  $color-palettes: map.set($color-palettes, $name, $palette);
+}
+
+@function getColor($paletteName, $value) {
+  $palette: map.get($color-palettes, $paletteName + '-color');
+  $color: map.get($palette, $value);
+  @return $color;
+}
+
+// Move this to separate file
+$color-tokens: (
+  'primary': (
+    'element': getColor('primary', 40),
+    'onElement': getColor('primary', 100),
+    'container': getColor('primary', 90),
+    'onContainer': getColor('primary', 10)
+  ),
+  'secondary': (
+    'element': getColor('secondary', 40),
+    'onElement': getColor('secondary', 100),
+    'container': getColor('secondary', 90),
+    'onContainer': getColor('secondary', 10)
+  ),
+  'tertiary': (
+    'element': getColor('tertiary', 40),
+    'onElement': getColor('tertiary', 100),
+    'container': getColor('tertiary', 90),
+    'onContainer': getColor('tertiary', 10)
+  ),
+  'neutral': (
+    'element': getColor('neutral', 40),
+    'onElement': getColor('neutral', 100),
+    'container': getColor('neutral', 90),
+    'onContainer': getColor('neutral', 10)
+  ),
+  'neutral-variant': (
+    'element': getColor('neutral-variant', 40),
+    'onElement': getColor('neutral-variant', 100),
+    'container': getColor('neutral-variant', 90),
+    'onContainer': getColor('neutral-variant', 10)
+  ),
+  'error': (
+    'element': getColor('error', 40),
+    'onElement': getColor('error', 100),
+    'container': getColor('error', 90),
+    'onContainer': getColor('error', 10)
+  ),
+  'warning': (
+    'element': getColor('warning', 40),
+    'onElement': getColor('warning', 100),
+    'container': getColor('warning', 90),
+    'onContainer': getColor('warning', 10)
+  ),
+  'success': (
+    'element': getColor('success', 40),
+    'onElement': getColor('success', 100),
+    'container': getColor('success', 90),
+    'onContainer': getColor('success', 10)
+  ),
+  'info': (
+    'element': getColor('info', 40),
+    'onElement': getColor('info', 100),
+    'container': getColor('info', 90),
+    'onContainer': getColor('info', 10)
+  )
+);

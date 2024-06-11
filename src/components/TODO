@@ -1,0 +1,17 @@
+- X Refactor IconBase to iconBadge
+- X Refactor IconButton to SimpleInteractable
+- X Integrate SimpleInteractable into SingleInteractable
+- Develop SingleInteractable
+- Integrate SimpleInteractable into ToggableInteractable
+- Develop ToggableInteractable
+- Integrate SingleInteractable into InteractableCollection
+- Integrate ToggableInteractable into InteractableCollection
+- Develop InteractableCollection
+
+____
+
+
+- Integrate IconBadge into SimpleList
+- Develop SimpleList
+- Integrate SimpleList into SimpleDropDown
+- Develop SimpleDropDown

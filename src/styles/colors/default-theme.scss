@@ -1,0 +1,74 @@
+$color-settings: (
+  'brand-colors': (
+    'primary': hsl(106, 33%, 38%),
+    'secondary': hsl(102, 12%, 44%),
+    'tertiary': hsl(180, 33%, 38%),
+    'neutral': hsl(88, 0%, 45%),
+    'neutral-variant': hsl(120, 4%, 61%)
+  ),
+  'utility-colors': (
+    'error': hsl(0, 100%, 50%),
+    'warning': hsl(60, 100%, 50%),
+    'success': hsl(120, 100%, 50%),
+    'info': hsl(250, 100%, 50%)
+  )
+);
+
+$palette-breaks: (0, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100);
+
+$default-theme-tokens: (
+  'primary': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'secondary': (
+    'element': 30,
+    'onElement': 90,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'tertiary': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'neutral': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'neutral-variant': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'error': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'warning': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'success': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  ),
+  'info': (
+    'element': 30,
+    'onElement': 100,
+    'container': 80,
+    'onContainer': 10
+  )
+);

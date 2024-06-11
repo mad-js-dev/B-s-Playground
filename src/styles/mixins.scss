@@ -1,0 +1,12 @@
+@mixin set-surface($theme: 'outline') {
+  border-radius: 50%;
+  @if ($theme == 'outline') {
+    background-color: blue;
+  } @else if ($vehicle == 'elevated') {
+    background-color: blue;
+  } @else if ($vehicle == 'filled') {
+    background-color: blue;
+  } @else if ($vehicle == 'filledTonal') {
+    background-color: blue;
+  }
+}

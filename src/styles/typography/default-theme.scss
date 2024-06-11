@@ -1,0 +1,133 @@
+$primary-font: 'Roboto Flex';
+
+$typography-tokens: (
+  'display': (
+    'sm': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 36px,
+      'letter-spacing': -0.25rem,
+      'line-height': 44px
+    ),
+    'md': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 45px,
+      'letter-spacing': 0,
+      'line-height': 52px
+    ),
+    'lg': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 57px,
+      'letter-spacing': 0,
+      'line-height': 64px
+    )
+  ),
+  'headline': (
+    'sm': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 24px,
+      'letter-spacing': 0,
+      'line-height': 32px
+    ),
+    'md': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 28px,
+      'letter-spacing': 0,
+      'line-height': 36px
+    ),
+    'lg': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 32px,
+      'letter-spacing': 0,
+      'line-height': 42px
+    )
+  ),
+  'title': (
+    'sm': (
+      'font-family': $primary-font,
+      'font-weight': 500,
+      'font-size': 14px,
+      'letter-spacing': 0.1,
+      'line-height': 28px
+    ),
+    'md': (
+      'font-family': $primary-font,
+      'font-weight': 500,
+      'font-size': 16px,
+      'letter-spacing': 0.15,
+      'line-height': 24px
+    ),
+    'lg': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 22px,
+      'letter-spacing': 0,
+      'line-height': 20px
+    )
+  ),
+  'body': (
+    'sm': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 12px,
+      'letter-spacing': 0.4rem,
+      'line-height': 16px
+    ),
+    'md': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 14px,
+      'letter-spacing': 0.25rem,
+      'line-height': 20px
+    ),
+    'lg': (
+      'font-family': $primary-font,
+      'font-weight': 400,
+      'font-size': 16px,
+      'letter-spacing': 0.5rem,
+      'line-height': 24px
+    )
+  ),
+  'label': (
+    'xs': (
+      'font-family': $primary-font,
+      'font-weight': 500,
+      'font-size': 10px,
+      'letter-spacing': 0.1rem,
+      'line-height': 20px
+    ),
+    'sm': (
+      'font-family': $primary-font,
+      'font-weight': 500,
+      'font-size': 14px,
+      'letter-spacing': 0.1rem,
+      'line-height': 20px
+    ),
+    'md': (
+      'font-family': $primary-font,
+      'font-weight': 500,
+      'font-size': 24px,
+      //'letter-spacing': 0.5rem,
+      'line-height': 16px
+    ),
+    'lg': (
+      'font-family': $primary-font,
+      'font-weight': 500,
+      'font-size': 32px,
+      //'letter-spacing': 0.1rem,
+      'line-height': 16px
+    ),
+    'xl': (
+      'font-family': $primary-font,
+      'font-weight': 500,
+      'font-size': 42px,
+      //'letter-spacing': 0.1rem,
+      'line-height': 16px
+    )
+  )
+);
