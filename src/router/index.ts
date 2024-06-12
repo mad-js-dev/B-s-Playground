@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import StyleguideView from '../views/StyleguideView.vue'
 import ColorStyleguide from '../styles/ColorsStyleguide.vue'
 import ColorTokenStyleguide from '../styles/ColorTokensStyleguide.vue'
 import BadgeInteractablePlayground from '../components/00-Atoms/BadgeInteractable/BadgeInteractable.styleguide.vue'
@@ -15,6 +16,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/styleguide',
+      name: 'styleguide',
+      component: StyleguideView
     },
     {
       path: '/about',

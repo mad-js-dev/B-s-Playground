@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="styleguide">
         <div>
             <h2>Base colors</h2>
             <h3>Brand colors</h3>
