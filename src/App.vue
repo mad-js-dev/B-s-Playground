@@ -5,37 +5,18 @@ import HelloWorld from '@/components/HelloWorld.vue'
 </script>
 
 <template>
-  <div style="display: flex;width: 100%;">
+  <div style="display: flex;width: 100%;align-items: center;">
     <header style="flex-basis: 35%;">
 
       <div class="wrapper">
         <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-        <HelloWorld msg="You did it!!!" />
-
+        <HelloWorld msg="To Do Boilerplate" />
       </div>
       <div class="wrapper">
         <nav>
           <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/styleguide">Styleguide</RouterLink>
           <RouterLink to="/about">About</RouterLink>
-        </nav>
-        <nav>
-          <p>Colors:</p>
-          <RouterLink to="/styleguide/colors/palettes">Palettes</RouterLink>
-          <RouterLink to="/styleguide/colors/tokens">Tokens</RouterLink>
-        </nav>
-        <nav>
-          <p>Atoms:</p>
-          <RouterLink to="/styleguide/components/badgeInteractable">Badge Interactable</RouterLink>
-          <RouterLink to="/styleguide/components/basicInteractable">Basic Interactable</RouterLink>
-        </nav>
-        <nav>
-          <p>Molecules:</p>
-          <RouterLink to="/styleguide/components/singleInteractable">Single Interactable</RouterLink>
-          <RouterLink to="/styleguide/components/tabsInteractable">Tabs Interactable</RouterLink>
-        </nav>
-        <nav>
-          <p>Organisms:</p>
-          <RouterLink to="/styleguide/components/toggableInteractable">Toggable Interactable</RouterLink>
         </nav>
       </div>
     </header>
@@ -101,6 +82,7 @@ nav a:first-of-type {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
+    width: 100%;
   }
 
   nav {
