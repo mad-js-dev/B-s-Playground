@@ -5,6 +5,7 @@
         'a-basicInteractable--hasTrailingIcon': trailingIcon,
         'a-basicInteractable--hasLeadingSeparator': leadingSeparator,
         'a-basicInteractable--hasTrailingSeparator': trailingSeparator,
+        'a-basicInteractable--hasInput': hasInput,
     }">
         <div v-if="leadingIcon" :class="`${atomic}__icon ${atomic}__icon--leading`">
             <svg-icon type="mdi" :path="MDI[`mdi${leadingIcon}` as keyof typeof MDI]" :size="24"></svg-icon>
@@ -12,8 +13,11 @@
         <div v-if="leadingSeparator" :class="`${atomic}__separatorWapper ${atomic}__separatorWapper--leading`">
             <div :class="`${atomic}__separatorLine`"></div>
         </div>
-        <div v-if="label" :class="`${atomic}__label`">
+        <div v-if="label && !hasInput" :class="`${atomic}__label`">
             <div>{{ label }}</div>
+        </div>
+        <div v-if="label != undefined && hasInput" :class="`${atomic}__input`">
+            <input type="text" :value="inputState" :placeholder="inputPlaceholder" @keyup="valueChange" />
         </div>
         <div v-if="trailingSeparator" :class="`${atomic}__separatorWapper ${atomic}__separatorWapper--trailing`">
             <div :class="`${atomic}__separatorLine`"></div>
@@ -27,15 +31,30 @@
 
 <script lang="ts" setup>
 import { type BasicInteractableProps } from '@/types/componentsProps'
-import { ref, toRefs } from 'vue'
+import { reactive, ref, toRefs, type PropType } from 'vue'
 import SvgIcon from 'vue3-icon'
 import * as MDI from '@mdi/js'
 
+
+const props = withDefaults(defineProps<BasicInteractableProps>(),
+    {
+        hasInput: false,
+    })
 const atomic = ref('a-basicInteractable');
 
-const props = defineProps<BasicInteractableProps>()
-
 const { leadingIcon, label } = toRefs(props);
+let inputState = reactive(label)
+
+const emit = defineEmits<{
+    (e: 'change', value: string): void
+}>()
+
+const valueChange = (e: KeyboardEvent) => {
+    console.log();
+    const result = (e.target as HTMLInputElement) ? e.target as HTMLInputElement : { value: "" };
+    emit('change', result.value)
+}
+
 
 </script>
 
@@ -50,14 +69,14 @@ $onSurface: black;
     align-items: center;
     align-content: center;
     margin: 5px;
-    width: auto;
+    width: 100%;
     flex-basis: 100%;
 
     &__separatorWapper {
         flex-basis: auto;
         position: relative;
         height: 100%;
-        flex-basis: 100%;
+        flex-basis: auto;
 
         &--leading {
             padding-right: 12px;
@@ -88,6 +107,19 @@ $onSurface: black;
 
         &:last-child {
             padding-right: 12px;
+        }
+    }
+
+    &__input {
+        flex-basis: 100%;
+
+        input {
+            border: 0;
+            width: 100%;
+
+            &:focus {
+                outline: none;
+            }
         }
     }
 }
