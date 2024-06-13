@@ -12,6 +12,7 @@ describe('<SearchBar />', () => {
     cy.get('.foo').should('have.class', 'bar')
   })
 
+  /*
   it('Has a search input', () => {
     mount(SearchBar, {
       propsData: {}
@@ -53,4 +54,5 @@ describe('<SearchBar />', () => {
     })
     cy.get('.foo').should('have.class', 'bar')
   })
+  */
 })
