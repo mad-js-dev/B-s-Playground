@@ -3,8 +3,9 @@
         'm-searchBar': true,
         'm-searchBar--hasContent': searchValue != '',
     }">
-        <BasicInteractable leadingIcon="Magnify" label="" trailingIcon="Close" :hasInput="true"
-            :inputPlaceholder="placeholder" @change="(e) => { console.log(e), searchValue = e }" />
+        <BasicInteractable leadingIcon="Magnify" :label="searchValue" trailingIcon="Close" :hasInput="true"
+            :inputPlaceholder="placeholder" @change="(value) => { $emit('change', value), searchValue = value }"
+            @onTrailIconClick="searchValue = ''" />
     </div>
 </template>
 
@@ -13,11 +14,14 @@ import { type SearchBarProps } from '@/types/componentsProps'
 import { reactive, ref, toRefs, type PropType } from 'vue'
 import BasicInteractable from "@/components/00-Atoms/BasicInteractable/BasicInteractable.vue"
 
-const props = withDefaults(defineProps<SearchBarProps>(),
+withDefaults(defineProps<SearchBarProps>(),
     {
         placeholder: 'Default placeholder',
     })
 
+defineEmits<{
+    (e: 'change', value: string): void
+}>()
 
 let searchValue = ref('')
 </script>
