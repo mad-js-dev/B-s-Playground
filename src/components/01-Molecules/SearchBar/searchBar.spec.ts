@@ -5,42 +5,26 @@ import SvgIcon from 'vue3-icon'
 describe('<SearchBar />', () => {
   const testLabel = 'Search'
 
-  it('Has a search leading icon', () => {
+  it('Has a search leading icon and an input', () => {
     mount(SearchBar, {
-      propsData: {}
+      propsData: {
+        placeholder: testLabel
+      }
     })
-    cy.get('.foo').should('have.class', 'bar')
+    cy.get('.a-basicInteractable__icon--leading svg').should('exist')
+    cy.get('.a-basicInteractable input[placeholder="Search"]').should('exist')
+    cy.get('.a-basicInteractable__icon--trailing svg').should('have.css', 'display', 'none')
+    cy.get('.a-basicInteractable input').should('exist').click().type('a')
+    cy.get('.a-basicInteractable__icon--trailing svg')
+      .should('not.have.css', 'display', 'none')
+      .click()
+      .should('have.css', 'display', 'none')
+      .get('.a-basicInteractable input')
+      .should('have.value', '')
   })
 
   /*
-  it('Has a search input', () => {
-    mount(SearchBar, {
-      propsData: {}
-    })
-    cy.get('.foo').should('have.class', 'bar')
-  })
-
-  it('Has a "search" by default as placeholder', () => {
-    mount(SearchBar, {
-      propsData: {}
-    })
-    cy.get('.foo').should('have.class', 'bar')
-  })
-
-  it('has a custom placeholder prop', () => {
-    mount(SearchBar, {
-      propsData: {}
-    })
-    cy.get('.foo').should('have.class', 'bar')
-  })
-
-  it('When its state != "" has a trailing cross icon', () => {
-    mount(SearchBar, {
-      propsData: {}
-    })
-    cy.get('.foo').should('have.class', 'bar')
-  })
-
+ 
   it('When trailing cross icon is clicked state is reset to ""', () => {
     mount(SearchBar, {
       propsData: {}
