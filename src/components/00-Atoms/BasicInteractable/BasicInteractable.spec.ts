@@ -55,4 +55,32 @@ describe('<BasicInteractable />', () => {
     cy.get('.a-basicInteractable__input input').type('c')
     cy.get('@changeSpy').should('be.calledWith', 'abc')
   })
+
+  it('Emits a trailinIconClick / leadingIconClick events every time an icon is clicked', () => {
+    mount(BasicInteractable, {
+      propsData: {
+        label: 'ab',
+        leadingIcon: 'ChevronUp',
+        trailingIcon: 'ChevronDown',
+        leadingSeparator: true,
+        trailingSeparator: true,
+        hasInput: true,
+        inputPlaceholder: 'This is a placeholder',
+        onTrailIconClick: cy.spy().as('trailIconClickSpy'),
+        onLeadIconClick: cy.spy().as('leadIconClickSpy')
+      }
+    })
+
+    cy.get('.a-basicInteractable__icon--trailing .vue3-icon')
+      .click()
+      .then(() => {
+        cy.wrap(Cypress.vueWrapper.emitted()).should('have.property', 'onTrailIconClick')
+      })
+
+    cy.get('.a-basicInteractable__icon--leading .vue3-icon')
+      .click()
+      .then(() => {
+        cy.wrap(Cypress.vueWrapper.emitted()).should('have.property', 'onLeadIconClick')
+      })
+  })
 })

@@ -8,7 +8,8 @@
         'a-basicInteractable--hasInput': hasInput,
     }">
         <div v-if="leadingIcon" :class="`${atomic}__icon ${atomic}__icon--leading`">
-            <svg-icon type="mdi" :path="MDI[`mdi${leadingIcon}` as keyof typeof MDI]" :size="24"></svg-icon>
+            <svg-icon type="mdi" :path="MDI[`mdi${leadingIcon}` as keyof typeof MDI]" :size="24"
+                @click="(e) => $emit('onLeadIconClick', e)"></svg-icon>
         </div>
         <div v-if="leadingSeparator" :class="`${atomic}__separatorWapper ${atomic}__separatorWapper--leading`">
             <div :class="`${atomic}__separatorLine`"></div>
@@ -23,7 +24,8 @@
             <div :class="`${atomic}__separatorLine`"></div>
         </div>
         <div v-if="trailingIcon" :class="`${atomic}__icon ${atomic}__icon--trailing`">
-            <svg-icon type="mdi" :path="MDI[`mdi${trailingIcon}` as keyof typeof MDI]" :size="24"></svg-icon>
+            <svg-icon type="mdi" :path="MDI[`mdi${trailingIcon}` as keyof typeof MDI]" :size="24"
+                @click="(e) => $emit('onTrailIconClick', e)"></svg-icon>
         </div>
     </div>
 
@@ -48,6 +50,8 @@ let inputState = reactive(label)
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
+    (e: 'onLeadIconClick', value: Event): void
+    (e: 'onTrailIconClick', value: Event): void
 }>()
 
 const valueChange = (e: KeyboardEvent) => {
