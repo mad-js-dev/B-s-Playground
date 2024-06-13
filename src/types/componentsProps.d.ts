@@ -17,7 +17,7 @@ export interface BasicInteractableProps {
   leadingSeparator?: boolean
   trailingIcon?: string
   trailingSeparator?: boolean
-  label: string
+  label?: string
   hasInput?: boolean
   inputPlaceholder?: string
 }

@@ -18,7 +18,7 @@
             <div>{{ label }}</div>
         </div>
         <div v-if="label != undefined && hasInput" :class="`${atomic}__input`">
-            <input type="text" :value="inputState" :placeholder="inputPlaceholder" @keyup="valueChange" />
+            <input type="text" :value="label" :placeholder="inputPlaceholder" @keyup="valueChange" />
         </div>
         <div v-if="trailingSeparator" :class="`${atomic}__separatorWapper ${atomic}__separatorWapper--trailing`">
             <div :class="`${atomic}__separatorLine`"></div>
@@ -33,7 +33,7 @@
 
 <script lang="ts" setup>
 import { type BasicInteractableProps } from '@/types/componentsProps'
-import { reactive, ref, toRefs, type PropType } from 'vue'
+import { reactive, ref, toRefs, watch, type PropType } from 'vue'
 import SvgIcon from 'vue3-icon'
 import * as MDI from '@mdi/js'
 
@@ -47,6 +47,11 @@ const props = withDefaults(defineProps<BasicInteractableProps>(),
 const { leadingIcon, label } = toRefs(props);
 
 let inputState = reactive(label)
+
+watch(() => props.label, (value) => {
+    //console.log('---', value)
+    inputState.value = value
+});
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
@@ -128,8 +133,7 @@ $onSurface: black;
 
             &:focus {
                 outline: none;
-            }
-        }
+            }    }
     }
 }
 </style>
