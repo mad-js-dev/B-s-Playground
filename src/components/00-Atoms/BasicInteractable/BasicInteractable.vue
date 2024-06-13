@@ -35,14 +35,15 @@ import { reactive, ref, toRefs, type PropType } from 'vue'
 import SvgIcon from 'vue3-icon'
 import * as MDI from '@mdi/js'
 
+const atomic = ref('a-basicInteractable');
 
 const props = withDefaults(defineProps<BasicInteractableProps>(),
     {
         hasInput: false,
     })
-const atomic = ref('a-basicInteractable');
 
 const { leadingIcon, label } = toRefs(props);
+
 let inputState = reactive(label)
 
 const emit = defineEmits<{
@@ -50,7 +51,6 @@ const emit = defineEmits<{
 }>()
 
 const valueChange = (e: KeyboardEvent) => {
-    console.log();
     const result = (e.target as HTMLInputElement) ? e.target as HTMLInputElement : { value: "" };
     emit('change', result.value)
 }
