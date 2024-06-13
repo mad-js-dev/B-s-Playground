@@ -14,10 +14,12 @@ export interface BadgeInteractableProps {
 
 export interface BasicInteractableProps {
   leadingIcon?: string
-  leadingSeparator?: Boolean
+  leadingSeparator?: boolean
   trailingIcon?: string
-  trailingSeparator?: Boolean
+  trailingSeparator?: boolean
   label: string
+  hasInput?: boolean
+  inputPlaceholder?: string
 }
 
 export interface SingleInteractableProps {
