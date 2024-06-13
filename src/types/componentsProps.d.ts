@@ -42,3 +42,7 @@ export interface ToggableInteractableProps {
   hasUnsetLabel?: Boolean
   hasMultipleOption?: Boolean
 }
+
+export interface SearchBarProps {
+  placeholder: string
+}

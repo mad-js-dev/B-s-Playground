@@ -105,6 +105,10 @@ $onSurface: black;
         height: 60%;
     }
 
+    &__icon {
+        display: flex;
+    }
+
     &__label {
         flex-basis: 100%;
         display: flex;
@@ -125,6 +129,7 @@ $onSurface: black;
         input {
             border: 0;
             width: 100%;
+            background: none;
 
             &:focus {
                 outline: none;
