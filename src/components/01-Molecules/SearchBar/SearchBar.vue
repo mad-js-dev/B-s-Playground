@@ -5,7 +5,7 @@
     }">
         <BasicInteractable leadingIcon="Magnify" :label="searchValue" trailingIcon="Close" :hasInput="true"
             :inputPlaceholder="placeholder" @change="(value) => { $emit('change', value), searchValue = value }"
-            @onTrailIconClick="searchValue = ''" />
+            @onTrailIconClick="searchValue = '', $emit('change', searchValue)" />
     </div>
 </template>
 
@@ -27,15 +27,24 @@ let searchValue = ref('')
 </script>
 
 <style lang="scss">
+@use 'sass:color';
+@use '../../../styles/mixins.scss';
+@import '../../../styles/settings';
+$surfaceColor: getColorToken('primary', 'container');
+
 .m-searchBar {
     width: 100%;
     border-radius: 28px;
     height: 56px;
     display: flex;
-    background-color: grey;
+    background-color: $surfaceColor;
 
     .a-basicInteractable__icon {
         padding: 0 16px;
+    }
+
+    .a-basicInteractable__input input:focus {
+        outline: none;
     }
 
     .a-basicInteractable__icon--trailing svg {

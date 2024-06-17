@@ -46,3 +46,15 @@ export interface ToggableInteractableProps {
 export interface SearchBarProps {
   placeholder: string
 }
+
+export interface TaskListProps {
+  title: string
+  data: Array
+}
+
+export interface TaskListItemProps {
+  id: number
+  title: string
+  description?: string
+  completed: Boolean
+}

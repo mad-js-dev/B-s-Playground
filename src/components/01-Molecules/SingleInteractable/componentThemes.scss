@@ -1,6 +1,6 @@
 .m-singleInteractable {
-  box-sizing: content-box;
-  &--button {
+  &--button .a-basicInteractable {
+    box-sizing: border-box;
     border-radius: 34px;
 
     &:hover {
@@ -12,7 +12,8 @@
     }
   }
 
-  &--chip {
+  &--chip .a-basicInteractable {
+    box-sizing: border-box;
     border-radius: 5px;
 
     &:hover {
@@ -28,7 +29,7 @@
     @each $name, $value in $color-palettes {
       $onColor: getColorToken($name, 'onElement');
       $surfaceColor: getColorToken($name, 'element');
-      &.m-singleInteractable--#{$name} {
+      &.m-singleInteractable--#{$name} .a-basicInteractable {
         border: 1px solid $surfaceColor;
         background-color: $surfaceColor;
         color: $onColor;
@@ -42,7 +43,7 @@
 
   &--tonal {
     @each $name, $value in $color-palettes {
-      &.m-singleInteractable--#{$name} {
+      &.m-singleInteractable--#{$name} .a-basicInteractable {
         border: 1px solid getColorToken($name, 'container');
         background-color: getColorToken($name, 'container');
         color: getColorToken($name, 'onContainer');
@@ -56,7 +57,7 @@
 
   &--outline {
     @each $name, $value in $color-palettes {
-      &.m-singleInteractable--#{$name} {
+      &.m-singleInteractable--#{$name} .a-basicInteractable {
         border: 1px solid getColorToken($name, 'onContainer');
         background-color: transparent;
         color: getColorToken($name, 'element');
@@ -70,7 +71,7 @@
 
   &--elevated {
     @each $name, $value in $color-palettes {
-      &.m-singleInteractable--#{$name} {
+      &.m-singleInteractable--#{$name} .a-basicInteractable {
         border: 1px solid transparent;
         background-color: getColorToken($name, 'container');
         color: getColorToken($name, 'onContainer');
@@ -85,7 +86,7 @@
 
   &--text {
     @each $name, $value in $color-palettes {
-      &.m-singleInteractable--#{$name} {
+      &.m-singleInteractable--#{$name} .a-basicInteractable {
         border: 1px solid transparent;
         background-color: transparent;
         color: getColorToken($name, 'onContainer');
