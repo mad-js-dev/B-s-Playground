@@ -14,11 +14,11 @@
         <div v-if="leadingSeparator" :class="`${atomic}__separatorWapper ${atomic}__separatorWapper--leading`">
             <div :class="`${atomic}__separatorLine`"></div>
         </div>
-        <div v-if="label && !hasInput" :class="`${atomic}__label`">
+        <div v-if="label && !hasInput" :class="`${atomic}__label`" @click="$emit('onLabelClick')">
             <div>{{ label }}</div>
         </div>
         <div v-if="label != undefined && hasInput" :class="`${atomic}__input`">
-            <input type="text" :value="label" :placeholder="inputPlaceholder" @keyup="valueChange" />
+            <input ref="input" type="text" :value="label" :placeholder="inputPlaceholder" @keyup="valueChange" />
         </div>
         <div v-if="trailingSeparator" :class="`${atomic}__separatorWapper ${atomic}__separatorWapper--trailing`">
             <div :class="`${atomic}__separatorLine`"></div>
@@ -33,11 +33,12 @@
 
 <script lang="ts" setup>
 import { type BasicInteractableProps } from '@/types/componentsProps'
-import { reactive, ref, toRefs, watch, type PropType } from 'vue'
+import { reactive, ref, toRefs, watch, nextTick, type PropType } from 'vue'
 import SvgIcon from 'vue3-icon'
 import * as MDI from '@mdi/js'
 
 const atomic = ref('a-basicInteractable');
+const input = ref(null)
 
 const props = withDefaults(defineProps<BasicInteractableProps>(),
     {
@@ -46,15 +47,21 @@ const props = withDefaults(defineProps<BasicInteractableProps>(),
 
 const { leadingIcon, label } = toRefs(props);
 
-let inputState = reactive(label)
+let inputState = ref(label)
 
 watch(() => props.label, (value) => {
-    //console.log('---', value)
-    inputState.value = value
+    if (props.hasInput == null) inputState.value = value
+});
+
+watch(() => props.hasInput, () => {
+    nextTick(() => {
+        if (props.hasInput) input.value.focus();
+    })
 });
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
+    (e: 'onLabelClick', value: Event): void
     (e: 'onLeadIconClick', value: Event): void
     (e: 'onTrailIconClick', value: Event): void
 }>()
@@ -67,7 +74,7 @@ const valueChange = (e: KeyboardEvent) => {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../../../styles/mixins.scss';
 $height: 24px;
 $onSurface: black;
@@ -75,11 +82,11 @@ $onSurface: black;
 .a-basicInteractable {
     display: inline-flex;
     flex-direction: row;
-    align-items: center;
+    align-items: normal;
     align-content: center;
-    margin: 5px;
     width: 100%;
     flex-basis: 100%;
+
 
     &__separatorWapper {
         flex-basis: auto;
@@ -107,6 +114,7 @@ $onSurface: black;
 
     &__icon {
         display: flex;
+        align-items: center;
     }
 
     &__label {
@@ -121,19 +129,21 @@ $onSurface: black;
         &:last-child {
             padding-right: 12px;
         }
+
+        &>div {
+            margin: 0 auto;
+        }
     }
 
     &__input {
         flex-basis: 100%;
+        display: flex;
 
         input {
             border: 0;
             width: 100%;
             background: none;
-
-            &:focus {
-                outline: none;
-            }    }
+        }
     }
 }
 </style>

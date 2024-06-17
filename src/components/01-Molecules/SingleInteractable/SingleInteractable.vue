@@ -1,10 +1,12 @@
 <template>
-    <BasicInteractable :class="{
+    <div :class="{
         'm-singleInteractable': true,
         'm-singleInteractable--button': type === 'button',
         'm-singleInteractable--chip': type === 'chip',
         ...getThemeClassNames('m-singleInteractable', theme as themeProps)
-    }" v-bind="props.label" />
+    }">
+        <BasicInteractable v-bind="props.label" />
+    </div>
 </template>
 
 <script lang="ts" setup>

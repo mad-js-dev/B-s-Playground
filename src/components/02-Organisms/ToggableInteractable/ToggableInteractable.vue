@@ -23,22 +23,23 @@ import { type BasicInteractableProps, type ToggableInteractableProps, type theme
 import SingleInteractable from "@/components/01-Molecules/SingleInteractable/SingleInteractable.vue"
 import { ref } from 'vue';
 
-// Add interactable type
-// 
-
 const props = defineProps<ToggableInteractableProps>();
 const state = ref(new Array((props.label as Array<Object>).length).fill(false));
 state.value[0] = true
 
+const emit = defineEmits<{
+    (e: 'change', value: string): void
+}>()
+
 const defaultTheme = ref({
     name: 'outline',
-    size: 'sm',
+    size: 'md',
     colorRole: 'primary'
 } as themeProps)
 
 const activeTheme = ref({
-    name: 'filled',
-    size: 'sm',
+    name: 'outline',
+    size: 'md',
     colorRole: 'primary'
 })
 
@@ -51,7 +52,7 @@ const updateState = (e: Event, index: number) => {
         })
         state.value[index] = true;
     }
-    console.log('...', e, index, state.value)
+    emit('change', index)
 }
 
 const getActiveIndex = () => {
@@ -84,6 +85,8 @@ const getTheme = () => {
 @import '../../../styles/settings';
 
 .o-ToggableInteractable {
+    width: 100%;
+
     &__wrapper {
         display: flex;
         flex-direction: row;
