@@ -2,7 +2,7 @@
     <div ref="root" class="t-taskList">
         <div class="t-taskList__headerWrapper">
             <BasicInteractable :hasInput="titleEditMode" :leadingIcon="(titleEditMode) ? 'Close' : 'Pen'"
-                :label="state.title" @onLeadIconClick="editTitle" @click="$emit('add')" />
+                :label="titleValue" @onLeadIconClick="editTitleTrigger" @change="updateTitleState" />
         </div>
         <div class="t-taskList__addWrapper">
             <SingleInteractable type="button" :label="{
@@ -11,18 +11,19 @@
                 name: 'elevated',
                 size: 'md',
                 colorRole: 'primary'
-            }" />
+            }" @click="$emit('addItem')" />
         </div>
         <div class="t-taskList__searchWrapper">
-            <SearchBar placeholder="Search" @change="(e) => searchString = e" />
+            <SearchBar :placeholder="props.placeholder" @change="(e) => searchString = e" />
         </div>
         <div class="t-taskList__filterWrapper">
             <ToggableInteractable :type="'single'" :interactableType="'chip'" :label="labels"
                 @change="(e) => toggleFilterState = e" />
         </div>
         <div class="t-taskList__listWrapper">
-            <template v-for="(item, index) in filterData" v-bind:key="index">
-                <TaskListItem :title="item.title" v-bind="item" @change="itemChange" />
+            <template v-for="(item, index) in filterData()" v-bind:key="index">
+                <TaskListItem :title="item.title" v-bind="item" @change="itemChange"
+                    @delete="(item) => $emit('deleteItem', item)" />
             </template>
         </div>
     </div>
@@ -39,18 +40,26 @@ import TaskListItem from "@/components/01-Molecules/TaskListItem/TaskListItem.vu
 
 const root = ref(null)
 const props = defineProps<TaskListProps>();
-const state = reactive(props)
-
 let titleEditMode = ref(false)
 let searchString = ref('')
 let toggleFilterState = ref(0)
 
+let titleValue = ref(props.title)
+let dataCollection = ref(props.data)
+
 const emit = defineEmits<{
-    (e: 'change', value: string): void
+    (e: 'editTitle'): void,
+    (e: 'addItem'): void,
+    (e: 'editItem', value: string): void
+    (e: 'deleteItem', value: string): void
 }>()
 
-watch(() => props, (value) => {
-    state.value = value
+watch(() => props.title, (value) => {
+    titleValue.value = value
+});
+
+watch(() => props.data, (value) => {
+    dataCollection.value = value
 });
 
 const labels = [
@@ -77,19 +86,25 @@ const labels = [
     }
 ]
 
-const editTitle = () => {
+const editTitleTrigger = () => {
     titleEditMode.value = !titleEditMode.value
-    if (titleEditMode.value == false) emit('change', { title: state.title })
+    if (titleEditMode.value == false) emit('editTitle', titleValue.value)
 }
 
-const itemChange = (updatedItems) => {
-    state.data = [...state.data, ...updatedItems]
-    console.log(updatedItems, state.data)
-    emit('change', { data: updatedItems })
+const updateTitleState = (title) => {
+    titleValue.value = title
 }
 
-const filterData = computed(() => {
-    let toggleFiltered = state.data.filter((item) => {
+const itemChange = (updatedItem) => {
+    dataCollection.value = dataCollection.value.map((item) => {
+        if (item.id == updatedItem.id) return updatedItem
+        return item
+    })
+    emit('editItem', updatedItem)
+}
+
+const filterData = () => {
+    let toggleFiltered = dataCollection.value.filter((item) => {
         let toggleComplete = true
         let result = true
         if (toggleFilterState.value != 0) {
@@ -102,7 +117,6 @@ const filterData = computed(() => {
     })
 
     let result = toggleFiltered.filter((item) => {
-        console.log(searchString.value, item)
         if (searchString.value.length > 0) {
             if (item.title.includes(searchString.value)) return true
             if (item.description.includes(searchString.value)) return true
@@ -111,8 +125,9 @@ const filterData = computed(() => {
             return true
         }
     })
+
     return result
-})
+}
 </script>
 
 <style lang="scss">

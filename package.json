@@ -24,6 +24,7 @@
     "pinia": "^2.1.7",
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
+    "uuid": "^10.0.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue3-icon": "^2.1.0"

@@ -7,5 +7,6 @@
 <style>
 .about {
   padding-left: 100px;
+  min-width: 800px;
 }
 </style>

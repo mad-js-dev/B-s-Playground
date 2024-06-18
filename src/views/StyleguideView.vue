@@ -1,16 +1,16 @@
 <template>
-  <div class="styleguide">
+  <div class="styleguideView">
     <h1>This is the styleguide view page</h1>
     <template v-for="(contentItem, index) in content" v-bind:key="index">
       <h2>{{ contentItem.title }}</h2>
       <template v-for="(item, itemIndex) in contentItem.items" v-bind:key="itemIndex">
         <RouterLink :to="item.path">
           <SingleInteractable :type="'button'" :label="{ label: item.title }" :theme="{
-      name: 'elevated',
-      size: 'sm',
-      colorRole: 'primary'
-    }
-      " />
+            name: 'elevated',
+            size: 'sm',
+            colorRole: 'primary'
+          }
+            " />
         </RouterLink>
       </template>
     </template>
@@ -73,8 +73,16 @@ const content = ref([
 ])
 </script>
 
-<style>
-.styleguide {
-  padding-left: 100px;
+<style lang="scss">
+.styleguideView {
+
+  h2 {
+    margin: 0 0 12px 0;
+  }
+
+  .a-basicInteractable {
+    margin: 8px 0;
+    max-width: 250px;
+  }
 }
 </style>

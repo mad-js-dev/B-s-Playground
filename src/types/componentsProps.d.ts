@@ -53,7 +53,7 @@ export interface TaskListProps {
 }
 
 export interface TaskListItemProps {
-  id: number
+  id: string
   title: string
   description?: string
   completed: Boolean
