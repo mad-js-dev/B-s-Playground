@@ -20,57 +20,57 @@
     </div>
 
 
-    <div v-for="type in  ['chip', 'button'] " v-bind:key="type" class="sectionWrapper">
+    <div v-for="type in ['chip', 'button'] " v-bind:key="type" class="sectionWrapper">
         <h3>type: {{ type }}</h3>
         <h4>Themes</h4>
         <div class="sectionWrapper__itemsWrapper">
             <div class="sectionWrapper__item" v-for="themeName in getComponentThemes()" v-bind:key="themeName">
                 <p>{{ themeName }}</p>
                 <SingleInteractable :type="type as SingleInteractableProps" :label="label" :theme="{
-                name: themeName,
-                size: 'sm',
-                colorRole: 'primary'
-            }" />
+                    name: themeName,
+                    size: 'sm',
+                    colorRole: 'primary'
+                }" />
             </div>
         </div>
         <h4>Color Roles</h4>
         <div class="sectionWrapper__itemsWrapper">
-            <div class="sectionWrapper__item" v-for=" paletteName  in  getPaletteNames(PaletteNames.BrandPaletteNames) "
+            <div class="sectionWrapper__item" v-for=" paletteName in getPaletteNames(PaletteNames.BrandPaletteNames) "
                 v-bind:key="paletteName">
                 <p>{{ paletteName }}</p>
                 <SingleInteractable :type="type as SingleInteractableProps['type']" :label="label" :theme="{
-                name: 'filled',
-                size: 'sm',
-                colorRole: paletteName
-            }
-                " />
+                    name: 'filled',
+                    size: 'sm',
+                    colorRole: paletteName
+                }
+                    " />
             </div>
         </div>
         <div class="sectionWrapper__itemsWrapper">
             <div class="sectionWrapper__item"
-                v-for=" paletteName  in  getPaletteNames(PaletteNames.UtilityPaletteNames) " v-bind:key="paletteName">
+                v-for=" paletteName in getPaletteNames(PaletteNames.UtilityPaletteNames) " v-bind:key="paletteName">
                 <p>{{ paletteName }}</p>
                 <SingleInteractable :type="type as SingleInteractableProps['type']" :label="label" :theme="{
-                name: 'filled',
-                size: 'sm',
-                colorRole: paletteName
-            }
-                " />
+                    name: 'filled',
+                    size: 'sm',
+                    colorRole: paletteName
+                }
+                    " />
             </div>
         </div>
         <h4>Sizes</h4>
         <div class="sectionWrapper__itemsWrapper" style="flex-direction: column;align-items: start;">
-            <div class="sectionWrapper__item" v-for="(themeSize, themeSizeval, themeSizeIndex)  in  ThemeSizes "
+            <div class="sectionWrapper__item" v-for="(themeSize, themeSizeval, themeSizeIndex)  in ThemeSizes "
                 v-bind:key="themeSize" style="min-width: 100%;">
                 <p>{{ themeSize }}</p>
-                <template v-for="index in  [5, 4, 3, 2, 1, 0] " v-bind:key="index">
+                <template v-for="index in [5, 4, 3, 2, 1, 0] " v-bind:key="index">
                     <SingleInteractable v-if="index - themeSizeIndex + 1 > 0"
                         :type="type as SingleInteractableProps['type']" :label="label" :theme="{
-                name: getComponentThemes()[5 - index],
-                size: themeSize,
-                colorRole: 'primary'
-            }
-                " />
+                            name: getComponentThemes()[5 - index],
+                            size: themeSize,
+                            colorRole: 'primary'
+                        }
+                            " />
                 </template>
             </div>
         </div>
@@ -95,11 +95,8 @@ const label = ref({
 })
 
 function updateLabel(e: Event, prop: string) {
-    //console.log(e.target, (e.target as HTMLInputElement).type, (e.target as HTMLInputElement).value)
     const elem = (e.target as HTMLInputElement);
-    console.log(elem, elem.value)
     let result = { ...label.value, [prop]: (elem.type === 'checkbox') ? !(elem.value === 'true') : elem.value };
-    console.log(result)
     label.value = result;
 }
 

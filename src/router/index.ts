@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import AppView from '../views/AppView.vue'
 import StyleguideView from '../views/StyleguideView.vue'
 import ColorStyleguide from '../styles/ColorsStyleguide.vue'
 import ColorTokenStyleguide from '../styles/ColorTokensStyleguide.vue'
@@ -16,6 +17,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/app',
+      name: 'app',
+      component: AppView
     },
     {
       path: '/styleguide',
