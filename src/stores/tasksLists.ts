@@ -5,29 +5,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 const defaultTasksInitialState = {
   searchPlaceholder: 'Search',
-  title: '[m]My task list',
+  title: 'My task list[m]',
   data: [
-    {
-      id: uuidv4(),
-      title: 'Lorem ipsum dolor sit amet alpha',
-      description:
-        'Consectetur adipiscing elit. Duis interdum sagittis dui et lobortis. Mauris placerat libero felis, non vehicula nulla venenatis varius.',
-      completed: false
-    },
-    {
-      id: uuidv4(),
-      title: 'Lorem ipsum dolor sit amet beta',
-      description:
-        'Consectetur adipiscing elit. Duis interdum sagittis dui et lobortis. Mauris placerat libero felis, non vehicula nulla venenatis varius.',
-      completed: true
-    },
-    {
-      id: uuidv4(),
-      title: 'Lorem ipsum dolor sit amet charlie',
-      description:
-        'Consectetur adipiscing elit. Duis interdum sagittis dui et lobortis. Mauris placerat libero felis, non vehicula nulla venenatis varius.',
-      completed: false
-    },
     {
       id: uuidv4(),
       title: 'Lorem ipsum dolor sit amet delta',

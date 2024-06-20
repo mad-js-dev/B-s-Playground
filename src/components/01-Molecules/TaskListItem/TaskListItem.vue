@@ -98,7 +98,7 @@ const emitChange = () => {
     }
 
     .a-basicInteractable__icon {
-        padding: 0 16px;
+        padding: 0 8px 0 0;
 
         &:hover {
 

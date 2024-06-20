@@ -5,8 +5,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div style="display: flex;width: 100%;align-items: center;">
-    <header style="flex-basis: 35%;">
-
+    <header style="flex-basis: 35%; max-height: 85vh;">
       <div class="wrapper">
         <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
         <div class="greetings">
@@ -25,7 +24,7 @@ import { RouterLink, RouterView } from 'vue-router'
         </nav>
       </div>
     </header>
-    <div style="flex-basis: 65%;">
+    <div style="flex-basis: 65%;display: flex; max-height: 85vh;">
       <RouterView />
     </div>
   </div>

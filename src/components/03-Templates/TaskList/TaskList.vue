@@ -1,24 +1,28 @@
 <template>
     <div ref="root" class="t-taskList">
-        <div class="t-taskList__headerWrapper">
-            <BasicInteractable :hasInput="titleEditMode" :leadingIcon="(titleEditMode) ? 'Close' : 'Pen'"
-                :label="titleValue" @onLeadIconClick="editTitleTrigger" @change="updateTitleState" />
+        <div class="t-taskList__headerContainer">
+            <div class="t-taskList__headerWrapper">
+                <BasicInteractable :hasInput="titleEditMode" :leadingIcon="(titleEditMode) ? 'Close' : 'Pen'"
+                    :label="titleValue" @onLeadIconClick="editTitleTrigger" @change="updateTitleState" />
+            </div>
+            <div class="t-taskList__addWrapper">
+                <SingleInteractable type="button" :label="{
+                    leadingIcon: 'Plus',
+                }" :theme="{
+                    name: 'elevated',
+                    size: 'md',
+                    colorRole: 'primary'
+                }" @click="$emit('addItem')" />
+            </div>
         </div>
-        <div class="t-taskList__addWrapper">
-            <SingleInteractable type="button" :label="{
-                leadingIcon: 'Plus',
-            }" :theme="{
-                name: 'elevated',
-                size: 'md',
-                colorRole: 'primary'
-            }" @click="$emit('addItem')" />
-        </div>
-        <div class="t-taskList__searchWrapper">
-            <SearchBar :placeholder="props.placeholder" @change="(e) => searchString = e" />
-        </div>
-        <div class="t-taskList__filterWrapper">
-            <ToggableInteractable :type="'single'" :interactableType="'chip'" :label="labels"
-                @change="(e) => toggleFilterState = e" />
+        <div class="t-taskList__filtersContainer">
+            <div class="t-taskList__searchWrapper">
+                <SearchBar placeholder="Search" @change="(e) => searchString = e" />
+            </div>
+            <div class="t-taskList__filterWrapper">
+                <ToggableInteractable :type="'single'" :interactableType="'chip'" :label="labels"
+                    @change="(e) => toggleFilterState = e" />
+            </div>
         </div>
         <div class="t-taskList__listWrapper">
             <template v-for="(item, index) in filterData()" v-bind:key="index">
@@ -135,18 +139,29 @@ const filterData = () => {
 @import '../../../styles/settings';
 
 .t-taskList {
+    max-width: 450px;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     width: 100%;
-    padding: 10px 20px;
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 12px;
     gap: 20px;
+    height: 100%;
+    min-height: 300px;
+    padding: 20px 12px 10px 12px;
+
+    &__headerContainer {
+        display: flex;
+        height: auto;
+        width: 100%;
+        gap: 2%;
+
+    }
 
     &__headerWrapper {
-        flex-basis: calc(100% - 42px - 20px);
+        flex-basis: 89%;
         display: flex;
 
         .a-basicInteractable__label {
@@ -174,24 +189,37 @@ const filterData = () => {
     }
 
     &__addWrapper {
-        flex-basis: 42px;
+        flex-basis: 9%;
+    }
+
+    &__filtersContainer {
+        display: flex;
+        height: auto;
+        width: 100%;
+        gap: 2%;
+
     }
 
     &__searchWrapper {
-        flex-basis: calc(73% - 10px);
+        flex-basis: calc(70%);
 
         .a-basicInteractable__input input {
-            @include getTypographyStyles('label', 'md');
+            @include getTypographyStyles('label', 'sm');
         }
     }
 
     &__filterWrapper {
-        flex-basis: calc(27% - 10px);
+        align-self: center;
+        flex-basis: 29%;
+        position: relative;
 
-        .o-ToggableInteractable,
-        .o-ToggableInteractable__wrapper,
-        .a-basicInteractable {
-            height: 100%;
+        &::-webkit-scrollbar {
+            margin-left: 30px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: red;
+            margin-left: 30px;
         }
 
         .a-basicInteractable__icon {
@@ -199,6 +227,7 @@ const filterData = () => {
         }
 
         .a-basicInteractable__label {
+            @include getTypographyStyles('label', 'sm');
             padding-left: 12px;
             padding-right: 6px;
         }
@@ -206,6 +235,8 @@ const filterData = () => {
 
     &__listWrapper {
         flex-basis: 100%;
+        overflow: auto;
+        height: 74%;
     }
 }
 </style>
