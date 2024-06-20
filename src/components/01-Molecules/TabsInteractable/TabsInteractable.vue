@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import type { BadgeInteractableProps, TabsInteractableProps } from "@/types/componentsProps";
-import { ref, toRefs, defineEmits } from 'vue'
+import { ref, toRefs } from 'vue'
 import BadgeInteractable from "@/components/00-Atoms/BadgeInteractable/BadgeInteractable.vue";
 
 const props = withDefaults(defineProps<TabsInteractableProps>(), {

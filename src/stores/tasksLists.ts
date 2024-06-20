@@ -34,20 +34,29 @@ export const useTaskListsStore = defineStore('taskLists', () => {
   }
 
   function createItem() {
-    defaultTask.value.data.push(defaultItem())
+    const newState = { ...defaultTask.value }
+    newState.data.push(defaultItem())
+    defaultTask.value = newState
   }
 
   function editItem(updateItem: TaskListItemProps) {
-    defaultTask.value.data.map((item, index) => {
-      if (item.id == updateItem.id) defaultTask.value.data[index] = updateItem
+    const newState = { ...defaultTask.value }
+    const result = defaultTask.value.data.map((item) => {
+      if (item.id == updateItem.id) return updateItem
+      return item
     })
+    newState.data = result
+    defaultTask.value = newState
   }
 
   function deleteItem(id: number) {
+    const newState = { ...defaultTask.value }
+
     const result = defaultTask.value.data.filter((item) => {
       return item.id == id ? false : true
     })
-    defaultTask.value.data = result
+    newState.data = result
+    defaultTask.value = newState
   }
 
   return { defaultTask, createItem, editItem, deleteItem, editTitle }

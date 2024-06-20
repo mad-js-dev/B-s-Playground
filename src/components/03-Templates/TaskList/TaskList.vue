@@ -213,15 +213,6 @@ const filterData = () => {
         flex-basis: 29%;
         position: relative;
 
-        &::-webkit-scrollbar {
-            margin-left: 30px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: red;
-            margin-left: 30px;
-        }
-
         .a-basicInteractable__icon {
             padding-left: 6px;
         }

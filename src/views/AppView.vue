@@ -1,7 +1,8 @@
 <template>
     <div class="appView">
-        <TaskList v-bind="taskList" @addItem="() => { store.createItem() }" @editItem="store.editItem"
-            @deleteItem="(item) => store.deleteItem(item.id)" @editTitle="(title) => { store.editTitle(title) }" />
+        <TaskList v-bind="store.defaultTask" @addItem="() => { console.log('addbtn'), store.createItem() }"
+            @editItem="store.editItem" @deleteItem="(item) => store.deleteItem(item.id)"
+            @editTitle="(title) => { store.editTitle(title) }" />
         <div>
             <h2 style="margin: 32px auto 0 auto;max-width: 70%;">Try out the app without loggin</h2>
             <p style="margin: 20px auto 0 auto;max-width: 70%;">
@@ -9,7 +10,7 @@
                 Suspendisse metus dolor, faucibus ut volutpat at, dapibus sed ex.
             </p>
             <div style="margin: 20px auto 0 auto;max-width: 70%;">
-                Benefits
+                <h3>Benefits</h3>
                 <ul>
                     <li>Lorem ipsum dolor sit amet</li>
                     <li>Lorem ipsum dolor sit amet</li>

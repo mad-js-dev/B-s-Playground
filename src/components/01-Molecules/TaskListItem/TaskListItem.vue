@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import type { TaskListItemProps } from "@/types/componentsProps";
-import { ref, watch, defineProps } from 'vue'
+import { ref, watch } from 'vue'
 import BasicInteractable from "@/components/00-Atoms/BasicInteractable/BasicInteractable.vue";
 
 const props = defineProps<TaskListItemProps>();
@@ -61,8 +61,8 @@ const editDescription = (value) => {
 }
 
 const saveItem = () => {
-    emitChange();
     editMode.value = !editMode.value
+    if (!editMode.value) emitChange();
 }
 
 const deleteItem = () => {
